@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity /* criacao da tabela */
@@ -20,12 +21,12 @@ public class Employee {
 	private double salario;
 	private String deg;
 
-	@ManyToMany(targetEntity = Department.class)
-	@JoinColumn(name = "eid", referencedColumnName = "id")
-	// private Set departmentSet;
-	private List departmentSet;
+	@ManyToMany
+	@JoinTable(name = "employee_department", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
 
-	public Employee(int eid, String enome, double salario, String deg, List departmentSet) {
+	private List<Department> departmentSet;
+
+	public Employee(int eid, String enome, double salario, String deg, List<Department> departmentSet) {
 		super();
 		this.eid = eid;
 		this.enome = enome;
@@ -70,11 +71,11 @@ public class Employee {
 		this.deg = deg;
 	}
 
-	public List getDepartmentSet() {
+	public List<Department> getDepartmentSet() {
 		return departmentSet;
 	}
 
-	public void setDepartmentSet(List departmentSet) {
+	public void setDepartmentSet(List<Department> departmentSet) {
 		this.departmentSet = departmentSet;
 	}
 

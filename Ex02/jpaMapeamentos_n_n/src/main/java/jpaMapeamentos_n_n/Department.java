@@ -18,15 +18,14 @@ public class Department {
 	private int id;
 	private String nome;
 
-	@ManyToMany(targetEntity = Employee.class)
-	// private Set employeeSet;
-	private List employeeSet;
+	@ManyToMany(mappedBy = "departmentSet")
+	private List<Employee> employeeSet;
 
 	public Department() {
 		super();
 	}
 
-	public Department(String nome, List employeeSet) {
+	public Department(String nome, List<Employee> employeeSet) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -49,11 +48,11 @@ public class Department {
 		this.nome = nome;
 	}
 
-	public List getEmployeeSet() {
+	public List<Employee> getEmployeeSet() {
 		return employeeSet;
 	}
 
-	public void setEmployeeSet(List employeeSet) {
+	public void setEmployeeSet(List<Employee> employeeSet) {
 		this.employeeSet = employeeSet;
 	}
 

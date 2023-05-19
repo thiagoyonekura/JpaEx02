@@ -66,7 +66,7 @@ public class ManyToMany {
 
 		// Armazenar trabalhador
 		entitymanager.persist(employee1);
-		entitymanager.persist(employee2);
+		entitymanager.persist(employee2); 
 		entitymanager.persist(employee3);
 
 		entitymanager.getTransaction().commit();
